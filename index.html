@@ -158,7 +158,8 @@
     label{display:block; font-size:12px; color:var(--sub); margin-bottom:6px}
     input, select, button, textarea{
       width:100%; padding:10px 12px; border-radius:10px;
-      border:1px solid #cbd5e1; background:#ffffff; color:var(--text); outline:none;
+      border:1px solid #cbd5e1; background:#ffffff; color:
+      var(--text); outline:none;
     }
     input:focus, select:focus, textarea:focus{
       border-color: var(--brand);
@@ -312,15 +313,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="inline">
-            <div>
-              <label for="organizer">Organizer</label>
-              <input type="text" id="organizer" placeholder="Your name"/>
-            </div>
-            <div>
-              <label for="attendees">Attendees (comma-separated)</label>
-              <input type="text" id="attendees" placeholder="alice@org.com, bob@org.com"/>
-            </div>
+          <div>
+            <label for="organizer">Organizer</label>
+            <input type="text" id="organizer" placeholder="Your name"/>
           </div>
         </div>
         <div class="row">
@@ -374,7 +369,7 @@
         </div>
 
         <div class="searchbar" style="margin-bottom:8px">
-          <input id="searchText" type="search" placeholder="Search title, organizer, attendees…"/>
+          <input id="searchText" type="search" placeholder="Search title, organizer…"/>
           <button class="btn-ghost" id="clearSearch">Clear</button>
         </div>
 
@@ -588,7 +583,7 @@
         .filter(b => {
           if(!q) return true;
           const hay = [
-            b.title||"", b.organizer||"", (b.attendees||[]).join(" "),
+            b.title||"", b.organizer||"",
             b.meetingType||"", b.roomId||""
           ].join(" ").toLowerCase();
           return hay.includes(q);
@@ -621,7 +616,6 @@
           </div>
           <div class="meta">
             <strong>Organizer:</strong> ${b.organizer || "-"}
-            ${b.attendees?.length ? ' • <strong>Attendees:</strong> ' + b.attendees.join(", ") : ""}
           </div>
           ${b.notes ? `<div class="muted">${b.notes}</div>` : ""}
           <div class="actions" style="margin-top:10px">
@@ -650,7 +644,6 @@
             byId("end").value = b.end;
             byId("title").value = b.title || "";
             byId("organizer").value = b.organizer || "";
-            byId("attendees").value = (b.attendees||[]).join(", ");
             byId("notes").value = b.notes || "";
             byId("createBtn").dataset.editing = id;
             byId("createBtn").textContent = "Update Booking";
@@ -663,7 +656,6 @@
 
     function clearForm(){
       byId("title").value = "";
-      byId("attendees").value = "";
       byId("notes").value = "";
       delete byId("createBtn").dataset.editing;
       byId("createBtn").textContent = "Create Booking";
@@ -698,8 +690,6 @@
       const end = byId("end").value;
       const title = byId("title").value.trim();
       const organizer = byId("organizer").value.trim();
-      const attendees = byId("attendees").value.trim()
-        ? byId("attendees").value.split(",").map(s=>s.trim()).filter(Boolean) : [];
       const notes = byId("notes").value.trim();
 
       if(!roomId) return alert("Please choose a room.");
@@ -726,22 +716,14 @@
         return alert("This room is already booked in the selected time range.");
       }
 
-      // Capacity advisory
-      const room = state.rooms.find(r=>r.id === roomId);
-      const attendeeCount = attendees.length + 1; // +1 organizer
-      if(room && attendeeCount > room.capacity){
-        const proceed = confirm(`Warning: ${room.name} capacity is ${room.capacity}, but you listed ${attendeeCount} people (including organizer). Proceed anyway?`);
-        if(!proceed) return;
-      }
-
       if(editingId){
         const idx = state.bookings.findIndex(x=>x.id === editingId);
         if(idx >= 0){
-          state.bookings[idx] = { ...state.bookings[idx], roomId, meetingType, date, start, end, title, organizer, attendees, notes };
+          state.bookings[idx] = { ...state.bookings[idx], roomId, meetingType, date, start, end, title, organizer, notes };
         }
       }else{
         const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
-        state.bookings.push({ id, roomId, meetingType, date, start, end, title, organizer, attendees, notes, createdAt: new Date().toISOString() });
+        state.bookings.push({ id, roomId, meetingType, date, start, end, title, organizer, notes, createdAt: new Date().toISOString() });
       }
 
       saveData(state);
@@ -777,23 +759,23 @@
     // ---- Wiring ----
     function wire(){
       byId("createBtn").addEventListener("click", createOrUpdate);
-      ["date","start","end","equipFilter","capacityFilter"].forEach(id => byId(id).addEventListener("change", () =>{renderAvailability(); updateKPIs();}));
+      ["date","start","end","equipFilter","capacityFilter"].forEach(id => byId(id).addEventListener("change", ()=>{renderAvailability(); updateKPIs();}));
       byId("filterRoom").addEventListener("change", renderList);
-      byId("filterDate").addEventListener("change", () =>{ renderList(); renderDaySchedule(); });
-      byId("resetFilters").addEventListener("click", () =>{ initDates(); byId("filterRoom").value=""; byId("searchText").value=""; renderList(); renderAvailability(); renderDaySchedule(); updateKPIs(); });
+      byId("filterDate").addEventListener("change", ()=>{ renderList(); renderDaySchedule(); });
+      byId("resetFilters").addEventListener("click", ()=>{ initDates(); byId("filterRoom").value=""; byId("searchText").value=""; renderList(); renderAvailability(); renderDaySchedule(); updateKPIs(); });
       byId("exportBtn").addEventListener("click", exportJSON);
-      byId("importBtn").addEventListener("click", () => byId("importInput").click());
+      byId("importBtn").addEventListener("click", ()=> byId("importInput").click());
       byId("importInput").addEventListener("change", (e) => {
         const file = e.target.files?.[0];
         if(file) importJSON(file);
       });
-      byId("clearAll").addEventListener("click", () =>{
+      byId("clearAll").addEventListener("click", ()=>{
         if(confirm("This will remove all bookings. Continue?")){
           state.bookings = []; saveData(state); renderList(); renderAvailability(); renderDaySchedule(); updateKPIs();
         }
       });
       byId("searchText").addEventListener("input", renderList);
-      byId("clearSearch").addEventListener("click", () =>{ byId("searchText").value=""; renderList(); });
+      byId("clearSearch").addEventListener("click", ()=>{ byId("searchText").value=""; renderList(); });
     }
 
     function updateKPIs(){

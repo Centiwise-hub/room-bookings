@@ -7,97 +7,51 @@
 <title>Centiwise Room Booking Manager</title>
 
 <style>
-/* ---------- THEME ---------- */
 :root{
-  --brand:#10b3a1;
-  --brand-600:#0ea893;
-  --brand-700:#0a8f7e;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --border:#e5e7eb;
-  --text:#0f172a;
-  --sub:#475569;
-  --ok:#16a34a;
-  --warn:#f59e0b;
-  --err:#dc2626;
-  --info:#0ea5e9;
-  --mt-mgmt:#6366f1;
-  --mt-hr:#f97316;
-  --mt-dept:#22c55e;
-  --mt-teams:#0ea5e9;
+  --brand:#10b3a1; --brand-600:#0ea893; --brand-700:#0a8f7e;
+  --bg:#f8fafc; --card:#ffffff; --border:#e5e7eb;
+  --text:#0f172a; --sub:#475569;
+  --mt-mgmt:#6366f1; --mt-hr:#f97316; --mt-dept:#22c55e; --mt-teams:#0ea5e9;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);
   color:var(--text);
+  background:var(--bg);
 }
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 header{
-  position:sticky;
-  top:0;
   background:#05AD8F;
   color:white;
-  padding-bottom:;
+  position:sticky;
+  top:0;
   z-index:20;
+  padding-bottom:10px;
 }
-.container{
-  max-width:1200px;
-  margin:0 auto;
-  padding:16px 20px;
-}
+.container{max-width:1200px; margin:0 auto; padding:16px 20px;}
 
-.hdr{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.titlewrap{
-  display:flex;
-  flex-direction:column;
-}
-.brand-title{
-  font-family:"Century Gothic";
-  font-size:22px;
-  font-weight:700;
-}
-.brand-sub{
-  font-family:"Century Gothic";
-  font-size:13px;
-  opacity:.95;
-}
+.hdr{display:flex; justify-content:space-between; align-items:center;}
+.titlewrap{display:flex; flex-direction:column;}
+.brand-title{font-family:"Century Gothic"; font-size:22px; font-weight:700;}
+.brand-sub{font-family:"Century Gothic"; font-size:13px; opacity:.95;}
 
-/* ---------- PRODUCT TITLE ---------- */
-.product-row{
-  display:flex;
-  justify-content:center;
-  margin-top:10px;
-}
+.product-row{display:flex; justify-content:center; margin-top:10px;}
 .product-block{text-align:center;}
-.product-title{
-  font-family:"Century Gothic";
-  font-size:20px;
-  font-weight:700;
-}
-.product-sub{
-  font-family:"Century Gothic";
-  font-size:13px;
-  opacity:.95;
-  margin-top:4px;
-}
+.product-title{font-family:"Century Gothic"; font-size:20px; font-weight:700;}
+.product-sub{font-family:"Century Gothic"; font-size:13px; opacity:.95;}
 
-/* ---------- SUMMARY ---------- */
 .summary{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
-  margin-top:14px;
+  margin-top:12px;
 }
 @media(max-width:900px){.summary{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.summary{grid-template-columns:1fr}}
+
 .tile{
   background:white;
   border:1px solid var(--border);
@@ -108,7 +62,7 @@ header{
   gap:10px;
 }
 .tile .lbl{font-size:12px; color:var(--sub);}
-.tile .kpi{font-size:20px; font-weight:600;}
+.tile .kpi{font-size:20px; font-weight:700;}
 .pill{
   margin-left:auto;
   padding:4px 8px;
@@ -118,108 +72,18 @@ header{
   font-size:12px;
   color:#0a8f7e;
 }
-
-/* ---------- LAYOUT ---------- */
-main .container{padding:20px}
-.grid{
-  display:grid;
-  gap:16px;
-  grid-template-columns:1.3fr 1fr;
-}
-@media(max-width:1100px){.grid{grid-template-columns:1fr}}
-
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 6px 20px rgba(2,6,23,.06);
-}
-h2{margin:0 0 10px 0;}
-
-.row{display:flex; gap:12px; flex-wrap:wrap;}
-label{font-size:12px; margin-bottom:4px; color:var(--sub); display:block;}
-
-input,select,button,textarea{
-  width:100%;
-  padding:10px 12px;
-  background:white;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-}
-
-button{
-  cursor:pointer;
-  background:linear-gradient(180deg,var(--brand),var(--brand-600));
-  color:white;
-  border:none;
-  padding:10px 12px;
-  border-radius:10px;
-}
-
-.btn-ghost{
-  background:transparent;
-  color:var(--brand-700);
-  border:1px solid rgba(16,179,161,.4);
-}
-
-.btn-danger{background:linear-gradient(180deg,#ef4444,#dc2626)}
-.btn-warn{background:linear-gradient(180deg,#f59e0b,#d97706)}
-
-.badge{
-  background:rgba(16,179,161,.12);
-  border:1px solid rgba(16,179,161,.35);
-  padding:3px 8px;
-  font-size:11px;
-  border-radius:999px;
-}
-
-.list{display:flex; flex-direction:column; gap:10px; max-height:520px; overflow:auto;}
-.booking{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px;
-}
-.booking .title{font-weight:700;}
-.booking .meta{font-size:12px; color:#64748b;}
-
-.tag{
-  font-size:11px;
-  padding:3px 6px;
-  background:rgba(16,179,161,.08);
-  border:1px solid #e2e8f0;
-  border-radius:8px;
-}
-.chip{
-  font-size:11px;
-  padding:3px 6px;
-  color:white;
-  border-radius:999px;
-}
-.chip.mgmt{background:var(--mt-mgmt);}
-.chip.hr{background:var(--mt-hr);}
-.chip.dept{background:var(--mt-dept);}
-.chip.teams{background:var(--mt-teams);}
-
-.empty{color:#64748b; font-style:italic; text-align:center;}
-
-.divider{height:1px; background:var(--border); margin:12px 0;}
 </style>
 </head>
 
 <body>
 
-<!-- ---------- HEADER ---------- -->
 <header>
   <div class="container">
 
     <div class="hdr">
-      <div class="brandmark">
-        <div class="titlewrap">
-          <div class="brand-title">Centiwise</div>
-          <div class="brand-sub">Secure Global Payments</div>
-        </div>
+      <div class="titlewrap">
+        <div class="brand-title">Centiwise</div>
+        <div class="brand-sub">Secure Global Payments</div>
       </div>
       <div class="sub">Nairobi • <span id="todayStr"></span></div>
     </div>
@@ -271,55 +135,51 @@ button{
 
 <div class="row">
   <div style="flex:1">
-    <label>Room</label>
+    <label for="room">Room</label>
     <select id="room"></select>
   </div>
   <div style="flex:1">
-    <label>Meeting type</label>
+    <label for="meetingType">Meeting type</label>
     <select id="meetingType"></select>
   </div>
 </div>
 
 <div class="row">
-  <div class="row" style="width:100%">
-    <div style="flex:1">
-      <label>Date</label>
-      <input type="date" id="date">
-    </div>
-    <div style="flex:1">
-      <label>Start</label>
-      <input type="time" id="start" value="09:00">
-    </div>
-    <div style="flex:1">
-      <label>End</label>
-      <input type="time" id="end" value="10:00">
-    </div>
+  <div style="flex:1">
+    <label for="date">Date</label>
+    <input type="date" id="date">
+  </div>
+  <div style="flex:1">
+    <label for="start">Start</label>
+    <input type="time" id="start" value="09:00">
+  </div>
+  <div style="flex:1">
+    <label for="end">End</label>
+    <input type="time" id="end" value="10:00">
   </div>
 </div>
 
 <div class="row">
   <div>
-    <label>Title / Purpose</label>
+    <label for="title">Title / Purpose</label>
     <input type="text" id="title" placeholder="e.g., Management sync, HR interview">
   </div>
 </div>
 
 <div class="row">
-  <div class="row" style="width:100%">
-    <div style="flex:1">
-      <label>Organizer</label>
-      <input type="text" id="organizer" placeholder="Your name">
-    </div>
-    <div style="flex:1">
-      <label>Attendees</label>
-      <input type="text" id="attendees" placeholder="alice@org.com, bob@org.com">
-    </div>
+  <div style="flex:1">
+    <label for="organizer">Organizer</label>
+    <input type="text" id="organizer" placeholder="Your name">
+  </div>
+  <div style="flex:1">
+    <label for="attendees">Attendees (comma-separated)</label>
+    <input type="text" id="attendees" placeholder="alice@org.com, bob@org.com">
   </div>
 </div>
 
 <div class="row">
   <div>
-    <label>Notes (optional)</label>
+    <label for="notes">Notes (optional)</label>
     <textarea id="notes" rows="2"></textarea>
   </div>
 </div>
@@ -333,30 +193,28 @@ button{
 <h2>Availability (for selected date & time)</h2>
 
 <div class="row">
-  <div class="row" style="width:100%">
-    <div style="flex:1">
-      <label>Equipment</label>
-      <select id="equipFilter">
-        <option value="">Any</option>
-        <option value="Large TV Screen">Large TV Screen</option>
-      </select>
-    </div>
+  <div style="flex:1">
+    <label for="equipFilter">Equipment</label>
+    <select id="equipFilter">
+      <option value="">Any</option>
+      <option value="Large TV Screen">Large TV Screen</option>
+    </select>
+  </div>
 
-    <div style="flex:1">
-      <label>Min capacity</label>
-      <select id="capacityFilter">
-        <option value="0">Any</option>
-        <option value="1">1+</option>
-        <option value="4">4+</option>
-        <option value="8">8+</option>
-        <option value="12">12+</option>
-      </select>
-    </div>
+  <div style="flex:1">
+    <label for="capacityFilter">Min capacity</label>
+    <select id="capacityFilter">
+      <option value="0">Any</option>
+      <option value="1">1+</option>
+      <option value="4">4+</option>
+      <option value="8">8+</option>
+      <option value="12">12+</option>
+    </select>
   </div>
 </div>
 
 <div id="availability"></div>
-<div class="muted" style="font-size:12px;margin-top:6px;">
+<div class="muted" style="margin-top:6px; font-size:12px">
   Click a room above to select it or press “Book” to prefill the form.
 </div>
 
@@ -367,89 +225,90 @@ button{
 
 </section>
 
+
 <!-- RIGHT SIDE -->
 <section class="card">
-<h2>Bookings</h2>
-<span class="badge" id="countBadge">0</span>
-
-<div class="row" style="margin-top:10px">
-  <input type="search" id="searchText" placeholder="Search title, organizer, attendees…"/>
-  <button class="btn-ghost" id="clearSearch">Clear</button>
-</div>
-
-<h3 style="margin-top:12px; color:#0a8f7e">Filters</h3>
-
-<div class="row">
-  <div style="flex:1">
-    <label>Room</label>
-    <select id="filterRoom"></select>
+  <div class="row" style="align-items:center; justify-content:space-between;">
+    <h2 style="margin:0">Bookings</h2>
+    <span class="badge" id="countBadge">0</span>
   </div>
-  <div style="flex:1">
-    <label>Date</label>
-    <input type="date" id="filterDate"/>
+
+  <div class="row" style="margin-top:10px">
+    <input type="search" id="searchText" placeholder="Search title, organizer, attendees…">
+    <button class="btn-ghost" id="clearSearch">Clear</button>
   </div>
-</div>
 
-<div class="footer" style="margin-top:10px">
-  <button class="btn-ghost" id="resetFilters">Reset Filters</button>
-  <button class="btn-ghost" id="exportBtn">Export JSON</button>
-  <button class="btn-ghost" id="importBtn">Import JSON</button>
-  <input type="file" id="importInput" accept="application/json" style="display:none"/>
-  <button class="btn-danger" id="clearAll">Clear All</button>
-</div>
+  <h3 style="margin-top:12px; color:#0a8f7e">Filters</h3>
 
-<div class="divider"></div>
-<div class="list" id="list"></div>
+  <div class="row">
+    <div style="flex:1">
+      <label for="filterRoom">Room</label>
+      <select id="filterRoom"></select>
+    </div>
+    <div style="flex:1">
+      <label for="filterDate">Date</label>
+      <input type="date" id="filterDate">
+    </div>
+  </div>
+
+  <div class="footer" style="margin-top:10px">
+    <button class="btn-ghost" id="resetFilters">Reset Filters</button>
+    <button class="btn-ghost" id="exportBtn">Export JSON</button>
+    <button class="btn-ghost" id="importBtn">Import JSON</button>
+    <input type="file" id="importInput" accept="application/json" style="display:none;">
+    <button class="btn-danger" id="clearAll">Clear All</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="list" id="list"></div>
 
 </section>
 
 </div>
 </main>
 
-<!-- ---------- JAVASCRIPT (UNCHANGED) ---------- -->
 <script>
-/* Your JS code is huge — but I kept it 100% intact.
-   It loads, saves, filters, prevents conflicts, etc.
-   The only change made: organizer default-writes your name.
-*/
-
-const DEFAULT_ROOMS=[
-  {id:"Tembo_Boardroom",name:"Tembo_Boardroom",capacity:15,equipment:["Large TV Screen"]},
-  {id:"Kifaru",name:"Kifaru",capacity:4,equipment:["Large TV Screen"]},
-  {id:"Nyati",name:"Nyati",capacity:4,equipment:[]},
-  {id:"Simba",name:"Simba",capacity:1,equipment:[]},
-  {id:"Chui",name:"Chui",capacity:1,equipment:[]},
+// ====== UTILITIES ======
+const DEFAULT_ROOMS = [
+  { id:"Tembo_Boardroom", name:"Tembo_Boardroom", capacity:15, equipment:["Large TV Screen"] },
+  { id:"Kifaru", name:"Kifaru", capacity:4, equipment:["Large TV Screen"] },
+  { id:"Nyati", name:"Nyati", capacity:4, equipment:[] },
+  { id:"Simba", name:"Simba", capacity:1, equipment:[] },
+  { id:"Chui", name:"Chui", capacity:1, equipment:[] },
 ];
 
-const MEETING_TYPES=[
+const MEETING_TYPES = [
   "Management Meeting",
   "HR Interview",
   "Departmental Meeting",
   "Teams call"
 ];
 
-const byId=id=>document.getElementById(id);
-const storageKey="roomBookingData.v3";
+const byId = (id) => document.getElementById(id);
+const storageKey = "roomBookingData.v3";
 
-function dateISO(d){return new Date(d).toISOString().slice(0,10);}
-function timeToMinutes(t){const[h,m]=t.split(":").map(Number);return h*60+m;}
-function overlaps(aS,aE,bS,bE){return aS<bE && bS<aE;}
+function dateISO(d){ return new Date(d).toISOString().slice(0,10); }
+function timeToMin(t){ const [h,m]=t.split(":").map(Number); return h*60+m; }
+function overlaps(aS,aE,bS,bE){ return aS<bE && bS<aE; }
 
 function loadData(){
-  try{
-    const raw=localStorage.getItem(storageKey);
-    return raw?JSON.parse(raw):{rooms:DEFAULT_ROOMS,bookings:[],conflictCount:0};
-  }catch(e){
-    return {rooms:DEFAULT_ROOMS,bookings:[],conflictCount:0};
+  try {
+    const raw = localStorage.getItem(storageKey);
+    return raw ? JSON.parse(raw) : { rooms: DEFAULT_ROOMS, bookings: [], conflictCount: 0 };
+  } catch {
+    return { rooms: DEFAULT_ROOMS, bookings: [], conflictCount: 0 };
   }
 }
-function saveData(x){localStorage.setItem(storageKey,JSON.stringify(x));}
+function saveData(d){ localStorage.setItem(storageKey, JSON.stringify(d)); }
 
-let state=loadData();
+let state = loadData();
 
+
+// ====== INIT ======
 function initRooms(){
-  const sel=byId("room");
-  sel.innerHTML=`<option disabled selected>Select a room</option>`;
+  const sel = byId("room");
+  sel.innerHTML = `<option disabled selected>Select a room</option>`;
   state.rooms.forEach(r=>{
     const o=document.createElement("option");
     o.value=r.id;
@@ -457,40 +316,419 @@ function initRooms(){
     sel.appendChild(o);
   });
 
-  const f=byId("filterRoom");
+  const f = byId("filterRoom");
   f.innerHTML=`<option value="">All rooms</option>`;
   state.rooms.forEach(r=>{
     const o=document.createElement("option");
-    o.value=r.id; o.textContent=r.name;
+    o.value=r.id;
+    o.textContent=r.name;
     f.appendChild(o);
   });
 }
 
 function initMeetingTypes(){
-  const mt=byId("meetingType");
-  mt.innerHTML="";
-  MEETING_TYPES.forEach(x=>{
+  const mt = byId("meetingType");
+  mt.innerHTML = "";
+  MEETING_TYPES.forEach(t=>{
     const o=document.createElement("option");
-    o.value=o.textContent=x;
+    o.value=t;
+    o.textContent=t;
     mt.appendChild(o);
   });
 }
 
 function initDates(){
-  const t=dateISO(new Date());
-  byId("date").value=t;
-  byId("filterDate").value=t;
-  byId("todayStr").textContent=new Date().toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});
+  const t = dateISO(new Date());
+  byId("date").value = t;
+  byId("filterDate").value = t;
+  byId("todayStr").textContent = new Date().toLocaleDateString(undefined,{
+    weekday:"short", month:"short", day:"numeric"
+  });
 }
 
-/* Availability, Day Schedule, List, and CRUD JS logic continues… */
 
-/* -----------------------------------------------------------
-   Because of message length limits, I will deliver the rest 
-   of the JS code EXACTLY as-is in the NEXT MESSAGE.
------------------------------------------------------------- */
+// ====== AVAILABILITY ======
+function availabilityFor(date,start,end,equipFilter,cap){
+  const s=timeToMin(start), e=timeToMin(end);
+  return state.rooms
+    .filter(r=> equipFilter ? r.equipment.includes(equipFilter) : true)
+    .filter(r=> r.capacity >= cap)
+    .map(room=>{
+      const conflicts = state.bookings
+        .filter(b=> b.roomId===room.id && b.date===date)
+        .filter(b=> overlaps(s,e,timeToMin(b.start), timeToMin(b.end)))
+        .sort((a,b)=> a.start.localeCompare(b.start));
 
+      return { room, conflicts };
+    });
+}
+
+function renderAvailability(){
+  const d=byId("date").value;
+  const s=byId("start").value;
+  const e=byId("end").value;
+  const eq=byId("equipFilter").value;
+  const cap=Number(byId("capacityFilter").value);
+
+  const host = byId("availability");
+
+  if(!d||!s||!e){
+    host.innerHTML=`<div class="muted">Select a date & time</div>`;
+    return;
+  }
+
+  const rows = availabilityFor(d,s,e,eq,cap);
+  host.innerHTML = "";
+
+  if(rows.length===0){
+    host.innerHTML = `<div class="empty">No rooms match filters.</div>`;
+    byId("kpiAvail").textContent = `0 / ${state.rooms.length}`;
+    return;
+  }
+
+  let free = 0;
+
+  rows.forEach(({room,conflicts})=>{
+    const busy = conflicts.length > 0;
+    if(!busy) free++;
+
+    const div=document.createElement("div");
+    div.className="roomline";
+    div.innerHTML = `
+      <div>
+        <div class="roomname">${room.name}</div>
+        <div class="muted" style="font-size:12px;">
+          Capacity: ${room.capacity} • ${room.equipment.length ? room.equipment.join(", ") : "No equipment"}
+        </div>
+      </div>
+      <div class="status ${busy?"busy":"ok"}">
+        ${busy ? `Busy (${conflicts[0].start}–${conflicts[0].end})` : "Available"}
+      </div>
+      <div class="schedbtn">
+        <button class="btn-ghost" data-book="${room.id}">Book</button>
+      </div>
+    `;
+
+    div.querySelector("[data-book]").addEventListener("click",(ev)=>{
+      ev.stopPropagation();
+      byId("room").value = room.id;
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    host.appendChild(div);
+  });
+
+  byId("kpiAvail").textContent = `${free} / ${rows.length}`;
+}
+
+
+// ====== DAY SCHEDULE ======
+function renderDaySchedule(){
+  const d = byId("filterDate").value || byId("date").value;
+  const host = byId("daySchedule");
+  host.innerHTML="";
+
+  state.rooms.forEach(r=>{
+    const bookings = state.bookings
+      .filter(b=> b.roomId===r.id && b.date===d)
+      .sort((a,b)=> a.start.localeCompare(b.start));
+
+    const row=document.createElement("div");
+    row.className="schedrow";
+
+    const slots = bookings.length
+      ? bookings.map(b=> `${b.start}–${b.end}${b.title?" • "+b.title:""}`).join(" | ")
+      : "Free all day";
+
+    row.innerHTML = `
+      <div class="schedroom">${r.name}</div>
+      <div class="schedslot">${slots}</div>
+      <div class="schedbtn">
+        <button class="btn-ghost" data-book-room="${r.id}">Book</button>
+      </div>
+    `;
+
+    row.querySelector("[data-book-room]").addEventListener("click",()=>{
+      byId("room").value = r.id;
+      byId("date").value = d;
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    host.appendChild(row);
+  });
+
+  const cnt = state.bookings.filter(b=>b.date===d).length;
+  byId("kpiBookings").textContent = cnt;
+}
+
+
+// ====== LIST ======
+function mtClass(t){
+  if(t==="Management Meeting") return "mgmt";
+  if(t==="HR Interview") return "hr";
+  if(t==="Departmental Meeting") return "dept";
+  return "teams";
+}
+
+function renderList(){
+  const q = (byId("searchText").value || "").toLowerCase();
+  const fRoom = byId("filterRoom").value;
+  const fDate = byId("filterDate").value;
+  const list = byId("list");
+
+  const filtered = state.bookings
+    .filter(b=> fRoom ? b.roomId===fRoom : true)
+    .filter(b=> fDate ? b.date===fDate : true)
+    .filter(b=>{
+      const hay = [
+        b.title||"", b.organizer||"",
+        (b.attendees||[]).join(","), b.meetingType||""
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    })
+    .sort((a,b)=> a.date.localeCompare(b.date) || a.start.localeCompare(b.start));
+
+  byId("countBadge").textContent = filtered.length;
+  if(filtered.length===0){
+    list.innerHTML=`<div class="empty">No bookings found.</div>`;
+    return;
+  }
+
+  list.innerHTML="";
+
+  filtered.forEach(b=>{
+    const r = state.rooms.find(x=>x.id===b.roomId);
+    const rn = r ? r.name : b.roomId;
+    const tag = mtClass(b.meetingType);
+
+    const el=document.createElement("div");
+    el.className="booking";
+
+    el.innerHTML = `
+      <div class="title">${b.title}</div>
+      <div class="tags">
+        <span class="chip ${tag}">${b.meetingType}</span>
+        <span class="tag">${r?`${r.capacity} pax`:""}</span>
+        ${r?.equipment?.includes("Large TV Screen") ? '<span class="tag">TV</span>' : ""}
+      </div>
+
+      <div class="meta">${rn} • ${b.date} • ${b.start}–${b.end}</div>
+
+      <div class="meta">
+        <strong>Organizer:</strong> ${b.organizer}
+        ${b.attendees?.length?` • <strong>Attendees:</strong> ${b.attendees.join(", ")}`:""}
+      </div>
+
+      ${b.notes ? `<div class="muted">${b.notes}</div>` : ""}
+
+      <div style="margin-top:8px">
+        <button class="btn-warn" data-edit="${b.id}">Edit</button>
+        <button class="btn-danger" data-del="${b.id}">Delete</button>
+      </div>
+    `;
+
+    // Edit
+    el.querySelector("[data-edit]").addEventListener("click",()=>{
+      byId("room").value=b.roomId;
+      byId("meetingType").value=b.meetingType;
+      byId("date").value=b.date;
+      byId("start").value=b.start;
+      byId("end").value=b.end;
+      byId("title").value=b.title;
+      byId("organizer").value=b.organizer;
+      byId("attendees").value=b.attendees.join(", ");
+      byId("notes").value=b.notes||"";
+      byId("createBtn").dataset.editing=b.id;
+      byId("createBtn").textContent="Update Booking";
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+
+    // Delete
+    el.querySelector("[data-del]").addEventListener("click",()=>{
+      if(confirm("Delete this booking?")){
+        state.bookings=state.bookings.filter(x=>x.id!==b.id);
+        saveData(state);
+        renderList();
+        renderAvailability();
+        renderDaySchedule();
+      }
+    });
+
+    list.appendChild(el);
+  });
+}
+
+
+// ====== CREATE OR UPDATE ======
+function organizerOverlap(org,date,start,end,editing){
+  const s=timeToMin(start), e=timeToMin(end);
+  return state.bookings.some(b=>
+    b.date===date &&
+    (editing ? b.id!==editing : true) &&
+    b.organizer.toLowerCase()===org.toLowerCase() &&
+    overlaps(s,e,timeToMin(b.start),timeToMin(b.end))
+  );
+}
+function roomOverlap(room,date,start,end,editing){
+  const s=timeToMin(start), e=timeToMin(end);
+  return state.bookings.some(b=>
+    b.roomId===room &&
+    b.date===date &&
+    (editing ? b.id!==editing : true) &&
+    overlaps(s,e,timeToMin(b.start),timeToMin(b.end))
+  );
+}
+
+function createOrUpdate(){
+  const roomId=byId("room").value;
+  const mt=byId("meetingType").value;
+  const date=byId("date").value;
+  const start=byId("start").value;
+  const end=byId("end").value;
+  const title=byId("title").value.trim();
+  const organizer=byId("organizer").value.trim();
+  const attendees=byId("attendees").value.trim()
+    ? byId("attendees").value.split(",").map(x=>x.trim()) : [];
+  const notes=byId("notes").value.trim();
+
+  if(!roomId) return alert("Choose a room.");
+  if(!date) return alert("Choose a date.");
+  if(!start||!end) return alert("Start/end time required.");
+  if(timeToMin(end)<=timeToMin(start)) return alert("End time must be after start.");
+  if(!organizer) return alert("Organizer required.");
+
+  const editing = byId("createBtn").dataset.editing;
+
+  if(organizerOverlap(organizer,date,start,end,editing)){
+    state.conflictCount++;
+    saveData(state);
+    byId("kpiConflicts").textContent = state.conflictCount;
+    return alert("Organizer has another booking at this time.");
+  }
+
+  if(roomOverlap(roomId,date,start,end,editing)){
+    state.conflictCount++;
+    saveData(state);
+    byId("kpiConflicts").textContent = state.conflictCount;
+    return alert("Room already booked at this time.");
+  }
+
+  if(editing){
+    const idx=state.bookings.findIndex(x=>x.id===editing);
+    state.bookings[idx] = { ...state.bookings[idx], roomId, meetingType:mt, date, start, end, title, organizer, attendees, notes };
+  } else {
+    const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+    state.bookings.push({ id, roomId, meetingType:mt, date, start, end, title, organizer, attendees, notes });
+  }
+
+  saveData(state);
+  renderAvailability();
+  renderDaySchedule();
+  renderList();
+
+  delete byId("createBtn").dataset.editing;
+  byId("createBtn").textContent = "Create Booking";
+
+  byId("title").value = "";
+  byId("attendees").value = "";
+  byId("notes").value = "";
+}
+
+
+// ====== EXPORT / IMPORT ======
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="room-bookings.json";
+  a.click();
+}
+
+function importJSON(file){
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    try{
+      const data = JSON.parse(e.target.result);
+      if(!data.rooms || !data.bookings) throw new Error("Invalid file");
+      state = data;
+      saveData(state);
+      initRooms();
+      renderList();
+      renderAvailability();
+      renderDaySchedule();
+      alert("Import completed.");
+    } catch(err){
+      alert("Import failed: "+err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+
+// ====== WIRING ======
+function wire(){
+  byId("createBtn").addEventListener("click",createOrUpdate);
+
+  ["date","start","end","equipFilter","capacityFilter"].forEach(id=>{
+    byId(id).addEventListener("change",()=>{
+      renderAvailability();
+    });
+  });
+
+  byId("filterRoom").addEventListener("change",renderList);
+  byId("filterDate").addEventListener("change",()=>{
+    renderList();
+    renderDaySchedule();
+  });
+
+  byId("resetFilters").addEventListener("click",()=>{
+    initDates();
+    byId("filterRoom").value="";
+    byId("searchText").value="";
+    renderList();
+    renderAvailability();
+    renderDaySchedule();
+  });
+
+  byId("exportBtn").addEventListener("click",exportJSON);
+  byId("importBtn").addEventListener("click",()=>byId("importInput").click());
+  byId("importInput").addEventListener("change",(e)=>{
+    if(e.target.files[0]) importJSON(e.target.files[0]);
+  });
+
+  byId("clearAll").addEventListener("click",()=>{
+    if(confirm("This will delete ALL bookings. Continue?")){
+      state.bookings=[];
+      saveData(state);
+      renderList();
+      renderAvailability();
+      renderDaySchedule();
+    }
+  });
+
+  byId("searchText").addEventListener("input",renderList);
+  byId("clearSearch").addEventListener("click",()=>{
+    byId("searchText").value="";
+    renderList();
+  });
+}
+
+
+// ====== BOOTSTRAP ======
+(function(){
+  initRooms();
+  initMeetingTypes();
+  initDates();
+  wire();
+  renderAvailability();
+  renderDaySchedule();
+  renderList();
+
+  // Prefill organizer
+  if(!byId("organizer").value){
+    byId("organizer").value = "Fednarnd Centiwise";
+  }
+})();
 </script>
-
 </body>
 </html>
